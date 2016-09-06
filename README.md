@@ -13,3 +13,8 @@ The knexfile.js contains the required information to connect to the database, if
 
 All api endpoints and schema information is documented in our google doc. See a link here.
 
+![alt text][logo]
+
+[logo]: https://github.com/OmakaseInc/Omakase/blob/dev/client/images/omakase-db.png "Our Database Schema"
+
+
