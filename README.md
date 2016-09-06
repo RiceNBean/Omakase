@@ -67,7 +67,7 @@ data = {
 	}
 }
 
-You can see our deployed application [here](https://safe-ridge-29049.herokuapp.com/)
+You can see our deployed application [here](https://omakase-food.herokuapp.com/)
 
 
 
