@@ -54,38 +54,85 @@ body {
     position: relative;
 }
 
-.main-content {
-    font-size: 1.5em;
-    width: 60%;
-    margin-top: 150px;
-    text-align: center;
-    position: relative;
+.blurred-container {
+    background: rgba(255,255,255,.95);
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    height: 350px;
+    width: 600px;
+}
+
+.blurred-container-about {
+    background: rgba(255,255,255,.95);
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    width: 600px;
+}
+
+.blurred-container-food-result {
+    background: rgba(255,255,255,.95);
+    margin-top: 10px;
+    height: 500px;
+    width: 600px;
+}
+
+.blurred-container-vote-survey {
+    background: rgba(255,255,255,.95);
+    margin-top: 20px;
+    height: 400px;
+    width: 600px;
+}
+
+.blurred-container-restaurant {
+    background: rgba(255,255,255,.95);
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    height: 510px;
+    width: 600px;
+}
+
+.Select-control {
+    background-color: black !important;
+}
+
+.is-open, .Select-option, .Select-menu-outer {
+    background-color: black;
     color: white;
 }
 
+.Select-placeholder, .Select-value-label {
+    color: white !important;
+}
+
+.main-content {
+    font-size: 1.5em;
+    width: 60%;
+    margin-top: 60px;
+    text-align: center;
+    position: relative;
+    color: black;
+}
+
 .result-content {
-    margin-top: 80px;
     display: flex;
     justify-content: center;
 }
 
 .vote-survey-content {
     font-size: 1.5em;
-    color: white;
-    width: 40%;
-    margin-top: 150px;
+    color: black;
+    margin: 20px;
     position: relative;
     text-align: center;
 }
 
 .about-content {
-    margin-top: 80px;
-    color: white;
-    text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
+    margin-top: 20px;
+    color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -109,6 +156,8 @@ body {
 }
 
 .vote-survey p {
+    display: flex;
+    justify-content: center;
     font-size: 1.5em;
     margin-top: 5px;
     text-shadow:
@@ -137,12 +186,7 @@ body {
 }
 
 .main-content p {
-    color: white;
-    text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
+    color: black;
     letter-spacing: 2px;
     font-size: 2em;
     margin-bottom: 35px;
@@ -154,16 +198,19 @@ body {
 }
 
 .main-button {
-    margin-top: 40px;
+    color: white;
+    margin-top: 15px;
     border: black;
+    background: black;
 }
 
 .main-button:hover {
-    background: black;
+    background: grey;
     color: white;
 }
 
 .food-result {
+    margin-top: 20px;
     width: 300px;
     font-size: 1em;
 }
@@ -174,20 +221,24 @@ body {
 }
 
 .vote-confirm {
+    color: black;
+
+}
+
+.voted-for {
+    font-style: italic;
     color: white;
-    text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
+    margin-top: 20px;
+    background: black;
+    margin-top: 5px;
 }
 
 .input-bar {
-    background-color: #fff;
+    background-color: black;
     border-color: #d9d9d9 #ccc #b3b3b3;
     border-radius: 4px;
     border: 1px solid #ccc;
-    color: #333;
+    color: white;
     cursor: default;
     display: table;
     border-spacing: 0;
@@ -200,18 +251,17 @@ body {
     text-align: center;
 }
 
+.login-bar {
+    margin-top: 5px;
+}
+
 .spinner {
     height: 200px;
     width: 200px;
 }
 
 .restaurant-content {
-    margin-top: 80px;
-    text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
+    margin-top: 5px;
 }
 
 .restaurant-results {
@@ -230,6 +280,7 @@ body {
 
 .restaurant-result:hover {
     border: 2px solid black;
+    border: 2px solid grey;
     cursor: pointer;
 }
 
@@ -247,9 +298,19 @@ body {
     margin: 20px;
 }
 
+.creator p {
+    background: rgba(255, 255, 255, .95);
+    color: black;
+    visibility: hidden;
+}
+
+.creator:hover p {
+    visibility: visible;
+}
+
 .creator-image {
     height: 200px;
     width: 200px;
     border-radius: 100%;
-    margin-bottom: 10px;
 }
+

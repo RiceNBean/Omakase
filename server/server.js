@@ -15,14 +15,14 @@ app.use(bodyParse.json({limit: '50mb'}));
 
 app.use(express.static('./client'));
 
-app.get('*', function (request, response){
-  response.sendFile(path.resolve('./client', 'index.html'));
-});
-
 app.use('/api/google', searchGoogleRouter);
 app.use('/api/user', userRouter);
 app.use('/api/search', searchRouter);
 app.use('/api/dish', dishRouter);
+
+app.get('*', function (request, response){
+  response.sendFile(path.resolve('./client', 'index.html'));
+});
 
 app.set('port', process.env.PORT || 3000);
 
