@@ -1,21 +1,30 @@
 var authModel = require('../model/auth.model.js'); 
 
+exports.auth = {
+	getLogin: getLogin,
+	postLogin: postLogin,
+	getSignUp: getSignUp,
+	postSignUp: postSignUp,
+	getFacebook: getFacebook,
+	getFacebookCallback: getFacebookCallback,
+	getVote: getVote,
+	logOut: logOut
+}
+
+
 	function getLogin(req, res){
-		res.render('login.ejs', {message: req.flash('loginMessage')});
-	
-	//
-	.then(function(data) {
+		authModel.findUserById();
+		.then(function(data) {
 		res.status(200).send(data);
 	})
-	.catch(function(error) {
-		res.status(500).send(error)
-	})
+		.catch(function(error) {
+			res.status(500).send(error)
+		})
 	//
-	});
+	};
 
 	function getSignUp(req, res){
-		res.render('/signup', {message: req.flash('signupMessage') });
-			//
+			
 	.then(function(data) {
 		res.status(200).send(data);
 	})
@@ -23,7 +32,7 @@ var authModel = require('../model/auth.model.js');
 		res.status(500).send(error)
 	})
 	//
-	})
+	};
 
 	function postSignUp(req, res){
 	passport.authenticate('local-signup', {
@@ -40,7 +49,7 @@ var authModel = require('../model/auth.model.js');
 	})
 	//
 
-	);
+	};
 
 	function postLogin(req, res){
 	  passport.authenticate('local-login', {
@@ -49,14 +58,14 @@ var authModel = require('../model/auth.model.js');
 		failureFlash : true
 	})
 	//
-	.then(function(data) {
-		res.status(200).send(data);
-	})
-	.catch(function(error) {
-		res.status(500).send(error)
-	})
+		.then(function(data) {
+			res.status(200).send(data);
+		})
+		.catch(function(error) {
+			res.status(500).send(error)
+		})
 	//
-	);
+	};
 
 
 	function getVote(req, res){
@@ -76,7 +85,8 @@ var authModel = require('../model/auth.model.js');
 	};
 
 	function getFacebook(req, res){
-		passport.authenticate('facebook', { scope : 'email' }))	//
+		passport.authenticate('facebook', { scope : 'email' })
+		authModel.addUser();
 		.then(function(data) {
 			res.status(200).send(data);
 		})

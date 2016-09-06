@@ -92,7 +92,6 @@ class SigninApp extends React.Component {
                             </form>
                             {this.handleValidInput()}
                             {this.handleRerouting()}
-                            <a href="/auth/facebook" className="btn btn-primary"><span className="fa fa-facebook"></span> Facebook</a>
 
                         </div>
                     </div>

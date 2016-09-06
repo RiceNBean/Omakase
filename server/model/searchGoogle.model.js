@@ -1,4 +1,5 @@
-var auth = require('./../../.auth');
+var path = require('path');
+require('dotenv').config()
 var request = require("request");
 
 var searchGoogleModel = module.exports;
