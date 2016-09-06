@@ -26,31 +26,31 @@ Users  - Dish (many to many)
 
 
 API ENDPOINTS (Client side):
-/api/google: To retrieve restaurant results from google make an AXIOS POST request and include
+/api/google: To retrieve restaurant results from google make an AXIOS POST request and include:
 data = {
 	"location": "<location>",
 	"restaurant":"<restaurant>"
 }
 
-/api/user/add: To add a user make an AXIOS GET request and include 
+/api/user/add: To add a user make an AXIOS GET request and include:
 params = {
 	"id": "<facebookID>",
 	"name": "<username>"
 }
 
-/api/user/check: To check if a user exists (for login) make an AXIOS GET request and include
+/api/user/check: To check if a user exists (for login) make an AXIOS GET request and include:
 params = {
 	"id": "<facebookID>",
 	"name": "<username>"
 }
 
-/api/search/restaurant: To retrieve the top restaurant make an AXIOS POST request and include
+/api/search/restaurant: To retrieve the top restaurant make an AXIOS POST request and include:
 data = {
 	"dish_name": "<dishname>",
 	"location_name": "<locationName>"
 }
 
-/api/dish/add: To add a dish make an AXIOS POST request and include
+/api/dish/add: To add a dish make an AXIOS POST request and include:
 data = {
 	"Dish" : {
 		"dish_name" : "<dishName>",
