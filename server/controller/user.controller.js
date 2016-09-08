@@ -8,7 +8,7 @@ exports.user = {
 function addUser(req, res) {
     var newUser = {
         name: req.query.name,
-        FB_id: req.query.id
+        password: req.query.password
     }
     userModel.findUserById(newUser)
         .then(function(user) {
@@ -30,15 +30,17 @@ function addUser(req, res) {
 }
 
 function checkUser(req, res) {
+    console.log("in checkuser req", req.query);
     var findUser = {
         name: req.query.name,
-        FB_id: req.query.id
+        password: req.query.password
     }
 
-    userModel.findUserById(findUser)
+    userModel.checkUser(findUser)
         .then(function(user) {
             if (user) {
-                res.status(200).send(user);
+                console.log("successful user signin");
+                res.status(202).send(user);
             } else {
                 res.status(200).send("Please sign up first")
             }
