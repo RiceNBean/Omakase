@@ -145,10 +145,10 @@ class SearchApp extends React.Component {
                             <FoodResult
                                 location={this.state.location}
                                 foodType={this.state.foodType}
-                                result={this.state.result}
+                                result={this.state.result[0]}
                             />
                     </div>
-                    <G_Map pin={this.state.result} />
+                    <G_Map pins={this.state.result} />
                 </div>
             );
         }
