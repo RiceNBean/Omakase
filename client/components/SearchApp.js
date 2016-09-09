@@ -158,8 +158,8 @@ class SearchApp extends React.Component {
                             result={this.state.mainView}
                         />
                         <G_Map pins={this.state.result} />
-                    </div>
                     <RestaurantResultList handleListClick={(item) => {this.handleListClick(item) }} list={this.state.result} />
+                    </div>
                 </div>
             );
         }

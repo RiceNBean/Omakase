@@ -2,12 +2,16 @@ import React from 'react';
 
 const ResultList = (props) => {
 	const imgURLs = ["../images/carling.jpg", "../images/daria.png", "../images/jonathan.png", "../images/michael.png"];
-    const style = {
-    	width: '99%',
-    	border: '1px solid red'
-    }
     const K_WIDTH = 40;
 	const K_HEIGHT = 40;
+    const style = {
+    	
+    }
+    const liStyle = {
+    	'list-style-type': 'none',
+    	color: 'white',
+    	margin: '0px 0px 0px 20px',
+    }
     const imgStyle = {
 		width: K_WIDTH,
 		height: K_HEIGHT,
@@ -15,23 +19,25 @@ const ResultList = (props) => {
 		borderRadius: K_HEIGHT,
 		backgroundColor: 'white',
 		textAlign: 'left',
-		color: '#3f51b5'
+		color: '#3f51b5',
 	};
     return (
-        <ol style={style}> 
+        <ul style={style}> 
 			{props.list.map(function(item, i) {
 				//console.log(i)
 				return (
-				<li onClick={() =>  props.handleListClick(item) } key={i}>
+				<li onClick={() =>  props.handleListClick(item) } key={i} style={liStyle}>
 					<img src={imgURLs[i]} style={imgStyle}/>
-					{item.restaurant_name}
-					{item.address}
-					{item.location_name}
-					{item.zipcode}
+					<span>
+						<p>{item.restaurant_name}</p>
+						<p>{item.address}</p>
+						<p>{item.location_name}
+						{item.zipcode}</p>
+					</span>
 				</li>
 				)
 			})}
-		</ol>
+		</ul>
     );
 }
 
