@@ -27,6 +27,8 @@ knex.ensureSchema = function() {
   				table.string('restaurant_name');
   				table.string('address');
   				table.integer('zipcode');
+					table.double('lat');
+					table.double('lng');
   				table.string('imageUrl');
   			}).then(function(table) {
   				console.log('Restaurants Table has been created', table)
