@@ -4,8 +4,9 @@
   "description": "App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm start"
+    "start": "node server/server.js",
+    "bundle": "node_modules/.bin/webpack -w",
+    "postinstall": "node_modules/.bin/webpack -p"
   },
   "repository": {
     "type": "git",
