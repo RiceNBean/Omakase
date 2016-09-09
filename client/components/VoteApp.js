@@ -114,6 +114,22 @@ class VoteApp extends React.Component {
     }
 
     render() {
+        if (!localStorage.getItem('username')){
+          return(
+            <div className="container-fluid">
+                <NavBar navLink={this.state.navLink} navMessage={this.state.navMessage}/>
+                <div className="main-container">
+                    <div className="blurred-container">
+                        <div className="main-content">
+                          <p>Login or Signup to vote!</p>
+                          <a href="/signup"><Button bsStyle="default" className="nav-button"> Sign Up </Button></a>
+                          <a href="/login"><Button bsStyle="default" className="nav-button"> Login </Button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          );
+        }
         if (this.state.page === 'voteSurvey') {
             return (
                 <div className="container-fluid">

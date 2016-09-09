@@ -20,6 +20,7 @@ class SigninApp extends React.Component {
         this.handleRerouting = this.handleRerouting.bind(this);
         this.handleUsername = this.handleUsername.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
+        this.handleFacebookLogin = this.handleFacebookLogin.bind(this);
     }
     handleUsername(event){
       this.setState({username: event.target.value});
@@ -53,12 +54,13 @@ class SigninApp extends React.Component {
             .then(response => {
                 if(typeof response.data === 'string') {
                     this.setState({error: true});
+                    localStorage.removeItem('username');
                     this.setState({errorMessage: response.data})
                 }
 
                 if(typeof response.data === 'object') {
                     this.setState({isAuth: true})
-                    console.log("signin successful");
+                    localStorage.setItem('username', response.data.name);
                     this.handleRerouting();
                 }
             })
@@ -80,8 +82,32 @@ class SigninApp extends React.Component {
             return <div className="error-message"> {this.state.errorMessage} </div>
         }
     }
+    handleFacebookLogin(){
+      axios.get('/auth/facebook')
+      .then(response => {
+        console.log("in axios.get /auth/facebook", response.data);
+
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    }
 
     render() {
+        if(localStorage.getItem('username')){
+          return(
+            <div className="container-fluid">
+              <LoginBar/>
+                <div className="main-container">
+                    <div className="blurred-container">
+                        <div className="main-content">
+                            <p> You are already logged in as {localStorage.getItem('username')}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          );
+        }
         if(this.state.previousPage === '/login' || this.state.previousPage === '/login-to-vote') {
             return (
                 <div className="container-fluid">
@@ -96,9 +122,9 @@ class SigninApp extends React.Component {
                             </form>
                             {this.handleValidInput()}
                             {this.handleRerouting()}
-                            // <a href="https://www.facebook.com/dialog/oauth?client_id=182645982159994&scope=email,user_birthday&redirect_uri=http://localhost:3000/" className="btn btn-primary">
-                            //   <span className="fa fa-facebook"></span>Facebook
-                            // </a>
+                            <Button className="btn btn-primary" onClick={()=>this.handleFacebookLogin()}>
+                              <span className="fa fa-facebook"></span>Facebook
+                            </Button>
                         </div>
                     </div>
                 </div>

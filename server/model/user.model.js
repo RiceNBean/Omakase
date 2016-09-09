@@ -10,8 +10,8 @@ userModel.addUser = function(attr) {
  	var hash = bcrypt.hashSync(attr.password, saltRounds);
 	attr.password = hash;
 	return db('Users').insert(attr)
-	.then(function(result) {
-		return result;
+	.then(function(attr) {
+		return attr;
 	})
 }
 
