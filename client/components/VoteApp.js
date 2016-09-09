@@ -79,7 +79,8 @@ class VoteApp extends React.Component {
 
     handleVote() {
         var addressComponents = this.state.restaurant.formatted_address.split(',');
-        var restaurantLocation = [this.state.restaurant.geometry.location.lat, this.state.restaurant.geometry.location.lng];
+        var lat = this.state.restaurant.geometry.location.lat;
+        var lng = this.state.restaurant.geometry.location.lng;
         if (this.state.foodType && this.state.location && this.state.restaurant) {
             var data = {
                 "Dish" : {
@@ -93,7 +94,8 @@ class VoteApp extends React.Component {
                     "restaurant_name": this.state.restaurant.name,
                     "address" : addressComponents[0],
                     "zipcode" : addressComponents[2].slice(-5),
-                    "location" : restaurantLocation,
+                    "lat" : lat,
+                    "lng" : lng,
                     "imageUrl": this.state.foodType.value.image
                }
            }
