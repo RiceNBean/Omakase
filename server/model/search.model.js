@@ -20,9 +20,9 @@ searchModel.getTopRestaurant = function(params) {
 		"Dishes.dish_name":params.dish_name,
 		"Locations.location_name":params.location_name
 	})
-	.select('*').orderBy('voteCount', 'desc')
+	.select('*').orderBy('voteCount', 'desc').limit(5)
 	.then(function(rows) {
-		return rows[0]
+		return rows;
 	})
 }
 

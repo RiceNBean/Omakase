@@ -12,14 +12,15 @@ class G_Map extends React.Component {
 		const style = {
 			width: '600px',
 			height: '300px'
-		}
+		};
+		const api = "AIzaSyAJu6SvKcz7H7fNJb-akc4PJ7BYhlbhqAw";
 		return (
-			<div style={style}> 
+			<div style={style} className="ADD_STYLES_LATER"> 
 				<GoogleMap
-					apiKey={ process.env.google_maps_api_key }
-					center={[this.props.pin.lat, this.props.pin.lng]}
+					bootstrapURLKeys={{key: api}}
+					center={[this.props.pins[0].lat, this.props.pins[0].lng]}
 					zoom={9}>
-					<Pin lat={this.props.pin.lat} lng={this.props.pin.lng} text={'A'} />
+					{this.props.pins.map((pin, i) => <Pin lat={pin.lat} lng={pin.lng} text={i + 1}/> )}
 				</GoogleMap>
 			</div>
 		);
