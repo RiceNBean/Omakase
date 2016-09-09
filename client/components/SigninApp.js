@@ -42,7 +42,6 @@ class SigninApp extends React.Component {
             }
         }
     }
-
     handleVerification(fn) {
       console.log("handlingVerification");
         axios.get('/api/user/' + fn, {
@@ -67,7 +66,6 @@ class SigninApp extends React.Component {
                 console.log(error);
             })
     }
-
     handleRerouting() {
         if(this.state.isAuth) {
             if(this.state.previousPage === '/login-to-vote') {
@@ -98,7 +96,9 @@ class SigninApp extends React.Component {
                             </form>
                             {this.handleValidInput()}
                             {this.handleRerouting()}
-                            // <a href="/auth/facebook" className="btn btn-primary"><span className="fa fa-facebook"></span> Facebook</a>
+                            // <a href="https://www.facebook.com/dialog/oauth?client_id=182645982159994&scope=email,user_birthday&redirect_uri=http://localhost:3000/" className="btn btn-primary">
+                            //   <span className="fa fa-facebook"></span>Facebook
+                            // </a>
                         </div>
                     </div>
                 </div>

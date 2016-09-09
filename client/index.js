@@ -16,5 +16,3 @@ ReactDOM.render((
         <Route path="/signup" component={SigninApp} />
     </Router>
 ), document.getElementById("app"));
-
-
