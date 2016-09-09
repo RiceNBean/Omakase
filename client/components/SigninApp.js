@@ -21,8 +21,6 @@ class SigninApp extends React.Component {
         this.handleUsername = this.handleUsername.bind(this);
         this.handlePassword = this.handlePassword.bind(this);
     }
-
-
     handleUsername(event){
       this.setState({username: event.target.value});
       console.log(this.state.username);
@@ -31,7 +29,6 @@ class SigninApp extends React.Component {
       this.setState({password: event.target.value});
       console.log(this.state.password);
     }
-
     handleValidInput() {
         if(!this.state.username.length) {
             return <div className="error-message"> Please input a Username </div>
@@ -50,13 +47,11 @@ class SigninApp extends React.Component {
       console.log("handlingVerification");
         axios.get('/api/user/' + fn, {
             params: {
-              // id: 12353623,
               name: this.state.username,
               password: this.state.password
             }
           })
             .then(response => {
-                console.log("from signinapp.js handleVerification");
                 if(typeof response.data === 'string') {
                     this.setState({error: true});
                     this.setState({errorMessage: response.data})
