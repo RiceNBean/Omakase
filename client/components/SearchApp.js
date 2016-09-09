@@ -6,6 +6,7 @@ import LocationSearchBar from './LocationSearchBar';
 import FoodSearchBar from './FoodSearchBar';
 import FoodResult from './FoodResult';
 import G_Map from './GoogleMap';
+import RestaurantResultList from './RestaurantResultList'
 import results from '../data/dummyResults';
 import { Button, Glyphicon } from 'react-bootstrap';
 
@@ -18,7 +19,8 @@ class SearchApp extends React.Component {
             navMessage: 'Go Vote!',
             location: null,
             foodType: null,
-            result: null
+            result: null,
+            mainView: null
         };
 
         this.handleLocationChoice = this.handleLocationChoice.bind(this);
@@ -27,6 +29,7 @@ class SearchApp extends React.Component {
         this.handleFoodSearch = this.handleFoodSearch.bind(this);
         this.navigateToLocationSearch = this.navigateToLocationSearch.bind(this);
         this.navigateToFoodSearch = this.navigateToFoodSearch.bind(this);
+        this.handleListClick = this.handleListClick.bind(this);
     }
 
     handleLocationChoice(choice) {
@@ -57,6 +60,7 @@ class SearchApp extends React.Component {
 
             axios.post('/api/search/restaurant', data)
             .then((response) => {
+                this.setState({mainView: response.data[0]})
                 this.setState({result: response.data});
                 this.setState({page: 'foodResult'});
             })
@@ -67,6 +71,12 @@ class SearchApp extends React.Component {
         } else {
             this.setState({foodError: true});
         }
+    }
+
+    handleListClick(item) {
+        console.log("handleListClick")
+        console.log(item)
+        this.setState({mainView:item});
     }
 
     navigateToLocationSearch() {
@@ -145,10 +155,11 @@ class SearchApp extends React.Component {
                         <FoodResult
                             location={this.state.location}
                             foodType={this.state.foodType}
-                            result={this.state.result[0]}
+                            result={this.state.mainView}
                         />
                         <G_Map pins={this.state.result} />
                     </div>
+                    <RestaurantResultList handleListClick={(item) => {this.handleListClick(item) }} list={this.state.result} />
                 </div>
             );
         }

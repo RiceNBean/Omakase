@@ -12,11 +12,13 @@ class G_Map extends React.Component {
 		const imgURLs = ["../images/carling.jpg", "../images/daria.png", "../images/jonathan.png", "../images/michael.png"];
 		const style = {
 			width: '600px',
-			height: '300px'
+			height: '500px',
+			margin: '10px',
+			border: '2px solid white',
 		};
 		const api = "AIzaSyAJu6SvKcz7H7fNJb-akc4PJ7BYhlbhqAw";
 		return (
-			<div style={style} className="ADD_STYLES_LATER"> 
+			<div style={style} className="restaurant-result-map"> 
 				<GoogleMap
 					bootstrapURLKeys={{key: api}}
 					center={[this.props.pins[0].lat, this.props.pins[0].lng]}
