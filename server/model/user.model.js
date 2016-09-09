@@ -1,23 +1,42 @@
 var db = require('../database/db.js')
 var _ = require('underscore')
+var bcrypt = require('bcrypt')
 
 var userModel = module.exports
 
 userModel.addUser = function(attr) {
-	return new Promise(function(resolve,reject) {
-		return db('Users').insert(attr)
-		.then(function(result) {
-			attr.id = result[0]
-			return resolve(attr)
-		})
+	//add user
+	var saltRounds = 10;
+ 	var hash = bcrypt.hashSync(attr.password, saltRounds);
+	attr.password = hash;
+	return db('Users').insert(attr)
+	.then(function(result) {
+		return result;
 	})
 }
 
-userModel.findUserById = function(params) {
+userModel.findUser = function(params){
+	//check if user exists
 	return db('Users').where({
-		FB_id: params.FB_id
+		name: params.name
+		}).limit(1)
+		.then(function(rows) {
+			return rows[0];
+		})
+}
+userModel.checkUser = function(params){
+	//check if username and password matches
+	return db('Users').where({
+		name: params.name
 	}).limit(1)
 	.then(function(rows) {
-		return rows[0]
+		console.log(rows);
+		var hash = rows[0].password;
+		if (bcrypt.compareSync(params.password, hash)){
+			return rows[0];
+		}
+		else {
+			return false;
+		}
 	})
 }

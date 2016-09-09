@@ -8,7 +8,15 @@ var db = require('./database/db.js');
 var searchRouter = require('./router/searchRouter.js');
 var userRouter = require('./router/userRouter.js');
 var dishRouter = require('./router/dishRouter.js');
-var searchGoogleRouter = require('./router/searchGooglePlacesRouter.js');
+var searchGoogleRouter = require('./router/searchGooglePlacesRouter.js')
+
+
+
+
+
+
+
+outer = require('./router/searchGooglePlacesRouter.js');
 
 app.use(cors());
 app.use(bodyParse.json({limit: '50mb'}));

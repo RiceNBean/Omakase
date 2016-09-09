@@ -1,4 +1,5 @@
 var userModel = require('../model/user.model.js');
+var bcrypt = require('bcrypt')
 
 exports.user = {
     add: addUser,
@@ -8,13 +9,14 @@ exports.user = {
 function addUser(req, res) {
     var newUser = {
         name: req.query.name,
-        FB_id: req.query.id
+        password: req.query.password
     }
-    userModel.findUserById(newUser)
+    userModel.findUser(newUser)
         .then(function(user) {
             if (user) {
                 res.status(200).send("User already exists");
             } else {
+              console.log("after findUserby id ");
                 userModel.addUser(newUser)
                     .then(function(result) {
                         res.status(200).send(result)
@@ -30,21 +32,31 @@ function addUser(req, res) {
 }
 
 function checkUser(req, res) {
-    var findUser = {
-        name: req.query.name,
-        FB_id: req.query.id
-    }
+  console.log("in checkuser req", req.query);
+  var lookupUser = {
+    name: req.query.name,
+    password: req.query.password
+  }
 
-    userModel.findUserById(findUser)
-        .then(function(user) {
-            if (user) {
-                res.status(200).send(user);
-            } else {
-                res.status(200).send("Please sign up first")
-            }
-        })
-        .catch(function(err) {
-            res.status(500).end('Error inside findUserById', err)
-        })
+  userModel.findUser(lookupUser)
+  .then(function(user){
+    if(user){
+      //if user exsits, check password
+      userModel.checkUser(lookupUser)
+      .then(function(result){
+        if(result)
+          res.status(202).send(result);
+        else
+          res.status(200).send('wrong password');
+      })
+
+    }else{
+      //if user doesnt exist , return GO SIGNUP!
+      res.status(200).send("Please sign up first")
+    }
+  })
+  .catch(function(err){
+    res.status(500).end('Error inside findUserById', err)
+  })
 
 }

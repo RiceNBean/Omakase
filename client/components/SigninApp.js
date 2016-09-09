@@ -10,7 +10,7 @@ class SigninApp extends React.Component {
         this.state = {
             username: '',
             password: '',
-            userid: null,
+            isAuth: false,
             error: false,
             errorMessage: null,
             previousPage: props.location.pathname
@@ -47,6 +47,7 @@ class SigninApp extends React.Component {
     }
 
     handleVerification(fn) {
+      console.log("handlingVerification");
         axios.get('/api/user/' + fn, {
             params: {
               // id: 12353623,
@@ -55,14 +56,16 @@ class SigninApp extends React.Component {
             }
           })
             .then(response => {
-                console.log("reponse sent from signinapp.js handleVerification");
+                console.log("from signinapp.js handleVerification");
                 if(typeof response.data === 'string') {
                     this.setState({error: true});
                     this.setState({errorMessage: response.data})
                 }
 
                 if(typeof response.data === 'object') {
-                    this.setState({userid: response.data.FB_id})
+                    this.setState({isAuth: true})
+                    console.log("signin successful");
+                    this.handleRerouting();
                 }
             })
             .catch(error => {
@@ -71,10 +74,9 @@ class SigninApp extends React.Component {
     }
 
     handleRerouting() {
-        console.log(this.state.userid)
-        if(this.state.userid) {
+        if(this.state.isAuth) {
             if(this.state.previousPage === '/login-to-vote') {
-                {browserHistory.push(`/vote/${this.state.userid}`)}
+                {browserHistory.push(`/vote/${this.state.isAuth}`)}
             }
             else {
                 {browserHistory.push('/')}
