@@ -45,8 +45,8 @@ class VoteApp extends React.Component {
     }
 
     handleGoogleSearch() {
-        this.setState({page: 'spinner'});
         if (this.state.location && this.state.restaurantQuery) {
+            this.setState({page: 'spinner'});
             var data = {
                 "location": this.state.location.label,
                 "restaurant": this.state.restaurantQuery
@@ -79,7 +79,7 @@ class VoteApp extends React.Component {
 
     handleVote() {
         var addressComponents = this.state.restaurant.formatted_address.split(',');
-
+        var restaurantLocation = [this.state.restaurant.geometry.location.lat, this.state.restaurant.geometry.location.lng];
         if (this.state.foodType && this.state.location && this.state.restaurant) {
             var data = {
                 "Dish" : {
@@ -93,6 +93,7 @@ class VoteApp extends React.Component {
                     "restaurant_name": this.state.restaurant.name,
                     "address" : addressComponents[0],
                     "zipcode" : addressComponents[2].slice(-5),
+                    "location" : restaurantLocation,
                     "imageUrl": this.state.foodType.value.image
                }
            }

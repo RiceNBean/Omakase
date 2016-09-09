@@ -48,8 +48,8 @@ class SearchApp extends React.Component {
     }
 
     handleFoodSearch() {
-        this.setState({page: 'spinner'});
         if (this.state.foodType) {
+            this.setState({page: 'spinner'});
             var data = {
                 "dish_name": this.state.foodType.label,
                 "location_name": this.state.location.label

@@ -7,10 +7,14 @@ exports.search = {
 function getTopRestaurant(req, res) {
 	searchModel.getTopRestaurant(req.body)
 	.then(function(result) {
-		res.status(200).send(result)
+		if(result) {
+			res.status(200).send(result);
+		} else {
+			res.status(500).end('Error in getTopRestaurant', err);
+		}
 	})
 	.catch(function(err) {
-		res.status(500).end('Error in getTopRestaurant', err)
+		res.status(500).end('Error in getTopRestaurant', err);
 	})
 }
 
@@ -20,7 +24,7 @@ function getDish(req, res) {
 		res.status(200).send(data);
 	})
 	.catch(function(error) {
-		res.status(500).send(error)
+		res.status(500).send(error);
 	})
 }
 
@@ -30,6 +34,6 @@ function getRestaurants(req, res) {
 		res.status(200).send(data);
 	})
 	.catch(function(error) {
-		res.status(500).send(error)
+		res.status(500).send(error);
 	})
 }
