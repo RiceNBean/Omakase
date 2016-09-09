@@ -56,7 +56,7 @@ class SigninApp extends React.Component {
             }
           })
             .then(response => {
-                console.log("reponse sent from signinapp.js handleVerification");
+                console.log("from signinapp.js handleVerification");
                 if(typeof response.data === 'string') {
                     this.setState({error: true});
                     this.setState({errorMessage: response.data})

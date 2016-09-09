@@ -45,7 +45,7 @@ function checkUser(req, res) {
       userModel.checkUser(lookupUser)
       .then(function(result){
         if(result)
-          res.status(202).send('signup succesful');
+          res.status(202).send(result);
         else
           res.status(200).send('wrong password');
       })
@@ -58,18 +58,5 @@ function checkUser(req, res) {
   .catch(function(err){
     res.status(500).end('Error inside findUserById', err)
   })
-
-  // userModel.checkUser(findUser)
-  //       .then(function(user) {
-  //           if (user) {
-  //               console.log("successful user signin");
-  //               res.status(202).send(user);
-  //           } else {
-  //               res.status(200).send("Please sign up first")
-  //           }
-  //       })
-  //       .catch(function(err) {
-  //           res.status(500).end('Error inside findUserById', err)
-  //       })
 
 }
