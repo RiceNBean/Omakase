@@ -142,13 +142,13 @@ class SearchApp extends React.Component {
                     <NavBar navLink={this.state.navLink} navMessage={this.state.navMessage}/>
                     <div className="main-container ">
                         <a className="arrow" onClick={() => {this.navigateToFoodSearch()}}><Glyphicon glyph="chevron-left"/></a>
-                            <FoodResult
-                                location={this.state.location}
-                                foodType={this.state.foodType}
-                                result={this.state.result[0]}
-                            />
+                        <FoodResult
+                            location={this.state.location}
+                            foodType={this.state.foodType}
+                            result={this.state.result[0]}
+                        />
+                        <G_Map pins={this.state.result} />
                     </div>
-                    <G_Map pins={this.state.result} />
                 </div>
             );
         }
