@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-
+import React from 'react';
 import GoogleMap from 'google-map-react';
+import Pin from './Pin'
 
-export default class SimpleMapPage extends Component {
+class G_Map extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -10,18 +10,20 @@ export default class SimpleMapPage extends Component {
 
 	render() {
 		const style = {
-		width: '600px',
-		height: '300px'
-	}
-
-	return (
+			width: '600px',
+			height: '300px'
+		}
+		return (
 			<div style={style}> 
 				<GoogleMap
 					apiKey={ process.env.google_maps_api_key }
-					center={ [34.019325, -118.494809] }
+					center={[this.props.pin.lat, this.props.pin.lng]}
 					zoom={9}>
+					<Pin lat={this.props.pin.lat} lng={this.props.pin.lng} text={'A'} />
 				</GoogleMap>
 			</div>
 		);
 	}
 }
+
+export default G_Map;

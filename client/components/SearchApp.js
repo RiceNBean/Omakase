@@ -148,7 +148,7 @@ class SearchApp extends React.Component {
                                 result={this.state.result}
                             />
                     </div>
-                    <G_Map />
+                    <G_Map pin={this.state.result} />
                 </div>
             );
         }
