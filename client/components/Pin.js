@@ -9,21 +9,18 @@ const style = {
   height: K_HEIGHT,
   left: -K_WIDTH / 2,
   top: -K_HEIGHT / 2,
-  border: '5px solid #f44336',
+  border: '2px solid #f44336',
   borderRadius: K_HEIGHT,
   backgroundColor: 'white',
-  textAlign: 'center',
-  color: '#3f51b5',
-  fontSize: 16,
-  fontWeight: 'bold',
-  padding: 4
+  textAlign: 'left',
+  color: '#3f51b5'
 };
 
 class Pin extends React.Component {
   render() {
     return (
-       <div style={style}>
-          {this.props.text}
+       <div>
+          <img src={this.props.imgURL} style={style} />
        </div>
     );
   }
